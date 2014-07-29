@@ -1,0 +1,75 @@
+﻿drop table if exists hashtag;
+drop table if exists menciones;
+drop table if exists hums;
+drop table if exists bloquear;
+drop table if exists seguir;
+drop table if exists  users;
+
+
+
+create table users(
+	id serial not null primary key,
+	avatar varchar,
+	nombre varchar not null,
+	apellido varchar not null,
+	email varchar not null,
+	nickname varchar not null,
+	telefono varchar,
+	dirección varchar,
+	remember_token varchar,
+	created_at timestamp NOT NULL default CURRENT_TIMESTAMP,
+        updated_at timestamp NOT NULL  default CURRENT_TIMESTAMP,
+	password varchar not null
+);
+
+
+create table seguir(
+	id serial not null primary key,
+	usuario_id integer not null,
+	usuario_id_seguir integer not null,
+	constraint fk_seguir_usuario foreign key (usuario_id) references users(id),
+	constraint fk_seguir_usuario_to foreign key (usuario_id_seguir) references users(id)
+);
+
+create table bloquear(
+	id serial not null primary key,
+	usuario_id integer not null,
+	usuario_id_bloqueo integer not null,
+	constraint fk_bloquear_usuario foreign key (usuario_id) references users(id),
+	constraint fk_bloquear_usuario_to foreign key (usuario_id_bloqueo) references users(id)
+);
+
+create table hums(
+	id serial not null primary key,
+	usuario_id integer not null,
+	mensaje varchar not null,
+	created_at date NOT NULL  default CURRENT_DATE,
+	estado integer not null,
+	constraint fk_hums_usuario foreign key (usuario_id) references users(id)
+	
+);
+
+create table menciones(
+	id serial not null primary key,
+	mensaje_id integer not null,
+	usuario_id integer not null,
+	created_at date NOT NULL default CURRENT_DATE,
+	estado integer not null,
+	constraint fk_menciones_usuario foreign key (usuario_id) references users(id),
+	constraint fk_menciones_mensaje foreign key (mensaje_id) references hums(id)
+	
+);
+
+create table hashtag(
+	id serial not null primary key,
+	mensaje_id integer not null,
+	hashtag varchar not null,
+	created_at date NOT NULL default CURRENT_DATE,
+	constraint fk_hashtag_mensaje foreign key (mensaje_id) references hums(id)
+	
+);
+
+
+
+
+
