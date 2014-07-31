@@ -29,6 +29,7 @@ Route::get('auth', 'UserController@isLogged');
 
 Route::group(array('before' => 'auth'), function () {
 
-	Route::get('/', 'HomeController@index');
+	Route::get('/', 'HomeController@index');	
+    Route::resource('hums', 'HumsController@index');
 
 });

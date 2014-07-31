@@ -33,9 +33,9 @@ class HomeController extends BaseController {
     	$this->layout->nest('content', 'user.register');
     }
 
-    public function restricted()
+    public function editarPerfil()
     {
-    	$this->layout->nest('content', 'restricted');
+    	$this->layout->nest('content', 'user.perfil');
     }
 
 }

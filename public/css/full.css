@@ -24,3 +24,11 @@ margin-left: 10%; /* Restamos la mitad de la anchura del objeto con un margin-le
 margin-right: 10%; /* Restamos la mitad de la anchura del objeto con un margin-left */
 
 }
+
+
+.comentario {
+    background-color: #ffffff;
+    border: 2px solid #a1a1a1;
+    padding: 10px 40px; 
+    border-radius: 20px;
+}

@@ -99,7 +99,7 @@
 <div class="row">
 
 
- <div class="col-md-6">
+ <div class="col-xs-8 col-sm-7 col-md-6">
 
   <div class="checkbox">
       <label>
@@ -118,7 +118,7 @@
 </div>
 
 
-<div class="col-md-6">
+<div class="col-xs-4 col-sm-5 col-md-4">
 
 
    <button type="submit" class="btn btn-default">Entrar</button>
@@ -259,15 +259,6 @@
 </div>
 
 
-
-
-<!-- Put your page content here! -->
-
-<!-- jQuery Version 1.11.0 -->
-<script src="js/jquery-1.11.0.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
 
 </body>
 

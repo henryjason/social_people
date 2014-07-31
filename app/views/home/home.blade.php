@@ -36,7 +36,10 @@
                         {{HTML::link('/', 'Mensajes')}}
                     </li>
                     <li>
-                        {{HTML::link('/', 'Notificaciones')}}
+                     <a href="/">
+                       <span class="badge pull-right">2</span>
+                       Notificaciones</a>
+      
                     </li>
 
                     <li>
@@ -72,15 +75,15 @@
            <div class="row">
               <div class="col-md-12">
 
-                    <div class="panel-heading text-rigth"><strong>Perfil</strong>
-                       <ul>
-                    	 <li>Henry Jason</li>
-                     	 <li>Henry Jason2</li>
-                    	 <li>Henry Jason3</li>
-                     	 <li>Henry Jason4</li>
-                      </ul>
+                    <div class="panel-heading text-rigth">
+                     
+
+                    <img src="img/avatar.jpg" alt="@henryjason" width="100" height="100" class="img-circle">
 
                     </div>
+
+
+                    <div class="panel-heading text-rigth"><strong>{{Auth::user()->getNickName();}}</strong></div>
 
                     <div class="panel-heading text-rigth"><strong>Amigos</strong>
                        <ul>
@@ -104,7 +107,7 @@
 
                     
 
-                </div>
+                </div>}
 
           </div>
 
@@ -112,33 +115,144 @@
 
   <div class="col-xs-8 col-sm-9">
 
-   <div class="row">
+          
+          <br>
 
+        <div class="row">
+            <div class="col-xs-12 col-sm-11 col-md-10">
 
-            <div class="col-md-6">
-              <button class="btn btn-primary btn-lg btn-block" id="local_click">Pantalla principal</button>
+               <div class="comentario">
+                <strong>Que estas Pensando?</strong>
+                
+                <textarea id="mensaje" class="form-control" rows="3"></textarea>
+                    
+                    <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-2">
+                    <select id="estado" class="form-control">
+                      <option value="0">Pùblico</option>
+                      <option value="1">Privado</option>
+                      <option value="2">Solo Yo</option>
+
+                      </select>
+
+                     </div>
+
+                     <div class="col-xs-12 col-sm-3 col-md-3">
+        
+                      <button type="button" id="hums_click" class="btn btn-default">Publicar</button>
+                     
+                     </div>
+
+                     </div>
+
+               </div>
+
             </div>
+            
+        </div>
 
+<br>
+      
+           <div id="hums">
+             
 
-            <div class="col-md-6">
-              <button class="btn btn-default btn-lg btn-block" id="local_clear">Pantalla principal</button>
-            </div>
-          </div>
+           </div>
+            
 
   </div>
  
 </div>
 
 
+<script type="text/javascript">
+  
+  $(document).ready(function() {
 
 
-    <!-- Put your page content here! -->
+  $('#hums_click').click(function() {
 
-    <!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
+ 
+    if ($("#mensaje").val() !== "") {
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+        var id = "<?php echo Auth::user()->getId(); ?>" ;
+        var mensaje = $("#mensaje").val();
+        var estado = $("#estado").val();
+
+        var Data = {id:id,mensaje:mensaje,estado:estado}; //Array 
+
+ 
+StoreHums(Data);
+    }else{
+      alert("CAMPOS REQUERIDO");
+    }
+
+    
+  });
+
+
+function StoreHums(data){
+  $.ajax({
+    url: '/hums',
+    type: 'POST',
+    data: data,
+  })
+  .done(function(response) {
+
+$("#hums").empty();
+
+var nombre = "{{Auth::user()->getNombre();}}";
+var apellido = "{{Auth::user()->getApellido();}}";
+var usuario = "{{Auth::user()->getNickName();}}";
+
+for (var i = 0; i < response.length; i++) {
+   
+   var $div = $('<div class="row">'+
+    '<div class="col-xs-12 col-sm-11 col-md-10">'+
+
+              '<div class="comentario">' +
+                 '<strong>'+ nombre+ " " + usuario +
+                 '</strong>'+
+                   '<p>' + response[i].mensaje +'</p>'+
+              ' </div>'+
+
+            '</div> </div><br> ');
+
+
+$("#hums").append($div);
+
+
+      
+    };
+
+
+
+
+/*
+    var data = [];
+    for (var i = 0; i < response.length; i++) {
+      data.push(
+        [
+          response[i].nombre,
+          parseFloat(response[i].votos_candidato)
+        ]
+      );
+    };
+  */
+
+  })
+  .fail(function(response) {
+      console.log(response);
+  });
+  
+}
+
+
+
+});
+
+</script>
+
+
 
 </body>
 
