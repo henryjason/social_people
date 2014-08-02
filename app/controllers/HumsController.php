@@ -15,8 +15,10 @@ class HumsController extends \BaseController {
 
 		if (Request::ajax())
 		{
-	
+
+          // creamos el array guardar 
          $id = Input::get('id');
+         $nickname = Input::get('nickname');
 
         $hums = array(
         'usuario_id' => Input::get('id'),
@@ -26,15 +28,21 @@ class HumsController extends \BaseController {
         );
             
             //creamos un nuevo registro 
-         Hums::create($hums);
+         $msg_id = Hums::create($hums)->id;
 
-            //array del registro registrado
+
+         //  proceamos el mensaje para guardar los etiquetados y los hashtag
+         $this->procesarHums(Input::get('mensaje'), $msg_id, $id, $nickname);
+
+            //traemos todos los hums del usuario actual
          $array_hums = Hums::myHums($id);
     		
 
     		return Response::json($array_hums);
 
 		}
+
+		return Redirect::to('/');
 	}
 
 
@@ -43,70 +51,92 @@ class HumsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function getHums()
 	{
 
-      
+
+      if (Request::ajax())
+		{
+	
+         $id = Input::get('id');
+
+            //array del registro registrado
+         $array_hums = Hums::myHums($id);
+    		
+
+    		return Response::json($array_hums);
+
+		}
+
+	return Redirect::to('/');
 
 	}
 
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
 
-	}
+    	private function procesarHums($hums, $msg_id, $id_usuario, $nickname){
 
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+    		//mencionamos al usuario que registra
+         $Menciones = array(
+        'mensaje_id' => $msg_id,
+        'usuario_id' => $id_usuario,
+        'estado' => 0
+
+        );
+            
+            //creamos un nuevo registro 
+         Menciones::create($Menciones);
 
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+            //creamos un array dividiendo todas las palabras del hums
+           $array_hums = preg_split("/[\s,]+/", $hums);
+           
+             //son las etiquetas que se van a buascar en el array
+             $etiqueta  = "@";
+             $hashtag = "#";
+                
+              //recorremos el array 
+            foreach ($array_hums as $key => $value) {
+            
+                // si la palabra actual considen con un @ procede
+            if (strpos($value,$etiqueta) === 0 && $value != $nickname) {
+
+                  //buscamos el usuario en la base de datos
+		         $id =  User::where('nickname', 'LIKE', '%'.$value)->get();
+                
+                //si el usuario existe, estraemos el id, para guardarlo en la tabla menciones
+              foreach ($id as $key => $value) {
+                  
+                  
+                  $Menciones = array(
+                 'mensaje_id' => $msg_id,
+                 'usuario_id' => $value->id,
+                 'estado' => 0  );
+           
+                 //creamos un nuevo registro 
+                   Menciones::create($Menciones);
+                   
+
+         }
+
+            
+             } elseif (strpos($value,$hashtag) === 0) {
+               
+         $hashtag = array(
+        'mensaje_id' => $msg_id,
+        'hashtag' => $value
+        );
+            
+            //creamos un nuevo registro 
+         Hashtag::create($hashtag);
+
+            }
+            	
+       }
 
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
 
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
 	}
 
 

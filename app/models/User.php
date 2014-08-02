@@ -26,6 +26,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
   	protected $guarded    = array('id');
   	public    $timestamps = false;
 
+public static function id_user($username)
+    {
+        return DB::select("select id from users where nickname LIKE %".$username."%");
+    }
+  	
+
 public function getId()
 {
   return $this->id;

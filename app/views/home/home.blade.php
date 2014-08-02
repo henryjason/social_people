@@ -151,7 +151,7 @@
             
         </div>
 
-<br>
+      <br>
       
            <div id="hums">
              
@@ -167,6 +167,8 @@
 <script type="text/javascript">
   
   $(document).ready(function() {
+   
+   GetHums();
 
 
   $('#hums_click').click(function() {
@@ -175,13 +177,15 @@
     if ($("#mensaje").val() !== "") {
 
         var id = "<?php echo Auth::user()->getId(); ?>" ;
+         var nickname = "{{Auth::user()->getNickName();}}" ;
         var mensaje = $("#mensaje").val();
         var estado = $("#estado").val();
 
-        var Data = {id:id,mensaje:mensaje,estado:estado}; //Array 
+        var Data = {id:id,nickname:nickname,mensaje:mensaje,estado:estado}; //Array 
 
  
 StoreHums(Data);
+
     }else{
       alert("CAMPOS REQUERIDO");
     }
@@ -200,9 +204,6 @@ function StoreHums(data){
 
 $("#hums").empty();
 
-var nombre = "{{Auth::user()->getNombre();}}";
-var apellido = "{{Auth::user()->getApellido();}}";
-var usuario = "{{Auth::user()->getNickName();}}";
 
 for (var i = 0; i < response.length; i++) {
    
@@ -210,8 +211,8 @@ for (var i = 0; i < response.length; i++) {
     '<div class="col-xs-12 col-sm-11 col-md-10">'+
 
               '<div class="comentario">' +
-                 '<strong>'+ nombre+ " " + usuario +
-                 '</strong>'+
+                 '<strong>'+ response[i].nombre + " " + response[i].nickname +
+                 '</strong>'+ '<h5>' + response[i].created_at + '</h5>'+
                    '<p>' + response[i].mensaje +'</p>'+
               ' </div>'+
 
@@ -224,20 +225,47 @@ $("#hums").append($div);
       
     };
 
+  })
+  .fail(function(response) {
+      console.log(response);
+  });
+  
+}// final de crear hums
 
 
+function GetHums(){
 
-/*
-    var data = [];
-    for (var i = 0; i < response.length; i++) {
-      data.push(
-        [
-          response[i].nombre,
-          parseFloat(response[i].votos_candidato)
-        ]
-      );
+  var id = "<?php echo Auth::user()->getId(); ?>" ;
+  var Data = {id:id};
+
+  $.ajax({
+    url: '/getHums',
+    type: 'POST',
+    data: Data,
+  })
+  .done(function(response) {
+
+$("#hums").empty();
+
+for (var i = 0; i < response.length; i++) {
+   
+   var $div = $('<div class="row">'+
+    '<div class="col-xs-12 col-sm-11 col-md-10">'+
+
+              '<div class="comentario">' +
+                 '<strong>'+ response[i].nombre + " " + response[i].nickname +
+                 '</strong>'+ '<h5>' + response[i].created_at + '</h5>'+
+                   '<p>' + response[i].mensaje +'</p>'+
+              ' </div>'+
+
+            '</div> </div><br> ');
+
+
+$("#hums").append($div);
+
+
+      
     };
-  */
 
   })
   .fail(function(response) {

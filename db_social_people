@@ -43,7 +43,7 @@ create table hums(
 	id serial not null primary key,
 	usuario_id integer not null,
 	mensaje varchar not null,
-	created_at date NOT NULL  default CURRENT_DATE,
+	created_at timestamp NOT NULL default CURRENT_TIMESTAMP,
 	estado integer not null,
 	constraint fk_hums_usuario foreign key (usuario_id) references users(id)
 	
@@ -53,7 +53,7 @@ create table menciones(
 	id serial not null primary key,
 	mensaje_id integer not null,
 	usuario_id integer not null,
-	created_at date NOT NULL default CURRENT_DATE,
+	created_at timestamp NOT NULL default CURRENT_TIMESTAMP,
 	estado integer not null,
 	constraint fk_menciones_usuario foreign key (usuario_id) references users(id),
 	constraint fk_menciones_mensaje foreign key (mensaje_id) references hums(id)
@@ -64,7 +64,7 @@ create table hashtag(
 	id serial not null primary key,
 	mensaje_id integer not null,
 	hashtag varchar not null,
-	created_at date NOT NULL default CURRENT_DATE,
+	created_at timestamp NOT NULL default CURRENT_TIMESTAMP,
 	constraint fk_hashtag_mensaje foreign key (mensaje_id) references hums(id)
 	
 );

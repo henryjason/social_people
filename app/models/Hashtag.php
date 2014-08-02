@@ -7,13 +7,7 @@ class Hashtag extends Eloquent
     protected $guarded    = array('id');
     public    $timestamps = false;
 
- public static function ejemplo()
-    {
-        return DB::select("select * from music");
-    }
 
-
-    
 
 }
 
