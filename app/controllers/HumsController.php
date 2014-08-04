@@ -123,13 +123,13 @@ class HumsController extends \BaseController {
             
              } elseif (strpos($value,$hashtag) === 0) {
                
-         $hashtag = array(
+         $hash = array(
         'mensaje_id' => $msg_id,
         'hashtag' => $value
         );
             
             //creamos un nuevo registro 
-         Hashtag::create($hashtag);
+         Hashtag::create($hash);
 
             }
             	

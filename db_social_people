@@ -71,5 +71,9 @@ create table hashtag(
 
 
 
-
+select h.id, h.mensaje, h.created_at, u.nombre, u.nickname
+from hashtag ha 
+     INNER join hums h on(h.id = ha.mensaje_id and ha.hashtag like '#Claro%')
+     INNER join users u on(h.usuario_id = u.id)
+     order by h.id DESC
 

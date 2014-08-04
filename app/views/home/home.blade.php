@@ -165,6 +165,7 @@
 
 
 <script type="text/javascript">
+
   
   $(document).ready(function() {
    
@@ -205,15 +206,39 @@ function StoreHums(data){
 $("#hums").empty();
 
 
+//recorremos resultados de ajax
 for (var i = 0; i < response.length; i++) {
-   
+
+  var final_mensaje = "";
+
+//dividimos el mensaje en palabras separada por espacio
+var elem = response[i].mensaje.split(" ");
+
+   //recorremos el array de palabras 
+for (var a = 0; a < elem.length; a++) {
+    
+    //veerficamos si la palabra empieza por #
+  
+   if(elem[a].substring(0, 1) == "#")
+   {
+    
+    final_mensaje = final_mensaje + "<a href='"  + 'hashtag/'  + elem[a].split("#")[1]  + "'>" + elem[a] + "</a>" +  " ";     
+
+   }else{
+
+    final_mensaje = final_mensaje + elem[a] + " ";
+   }
+
+
+};
+
    var $div = $('<div class="row">'+
     '<div class="col-xs-12 col-sm-11 col-md-10">'+
 
               '<div class="comentario">' +
                  '<strong>'+ response[i].nombre + " " + response[i].nickname +
                  '</strong>'+ '<h5>' + response[i].created_at + '</h5>'+
-                   '<p>' + response[i].mensaje +'</p>'+
+                   '<p>' + final_mensaje +'</p>'+
               ' </div>'+
 
             '</div> </div><br> ');
@@ -247,7 +272,32 @@ function GetHums(){
 
 $("#hums").empty();
 
+//recorremos resultados de ajax
 for (var i = 0; i < response.length; i++) {
+
+  var final_mensaje = "";
+
+//dividimos el mensaje en palabras separada por espacio
+var elem = response[i].mensaje.split(" ");
+
+   //recorremos el array de palabras 
+for (var a = 0; a < elem.length; a++) {
+    
+    //veerficamos si la palabra empieza por #
+  
+   if(elem[a].substring(0, 1) == "#")
+   {
+    
+    final_mensaje = final_mensaje + "<a href='"  + 'hashtag/'  + elem[a].split("#")[1]  + "'>" + elem[a] + "</a>" +  " ";     
+
+   }else{
+
+    final_mensaje = final_mensaje + elem[a] + " ";
+   }
+
+
+};
+
    
    var $div = $('<div class="row">'+
     '<div class="col-xs-12 col-sm-11 col-md-10">'+
@@ -255,7 +305,7 @@ for (var i = 0; i < response.length; i++) {
               '<div class="comentario">' +
                  '<strong>'+ response[i].nombre + " " + response[i].nickname +
                  '</strong>'+ '<h5>' + response[i].created_at + '</h5>'+
-                   '<p>' + response[i].mensaje +'</p>'+
+                   '<p>' + final_mensaje +'</p>'+
               ' </div>'+
 
             '</div> </div><br> ');
@@ -279,7 +329,6 @@ $("#hums").append($div);
 });
 
 </script>
-
 
 
 </body>

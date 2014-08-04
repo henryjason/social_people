@@ -68,6 +68,17 @@ App::down(function()
 });
 
 /*
+App::error(function(Exception $exception, $code)
+{
+    Log::error($exception);
+
+    if ( ! Config::get('app.debug')) {
+        // Retorna una vista o lo que creas conveniente
+        return Redirect::to('/');
+    }
+});
+*/
+/*
 |--------------------------------------------------------------------------
 | Require The Filters File
 |--------------------------------------------------------------------------

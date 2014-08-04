@@ -31,8 +31,12 @@ Route::group(array('before' => 'auth'), function () {
 
 
 
-	Route::get('/', 'HomeController@index');	
+	Route::get('/', 'HomeController@index');
+
     Route::resource('hums', 'HumsController@index');
     Route::resource('getHums', 'HumsController@getHums');
+
+    Route::resource('hashtag/{id}', 'HashtagController@index'); 
+    Route::resource('getHashtag', 'HashtagController@getHashtag');
 
 });

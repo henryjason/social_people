@@ -21,7 +21,8 @@ class HomeController extends BaseController {
 		return $this->layout->nest('content', 'home.home');
 	}
 
-	  public function login()
+
+    	  public function login()
     {
     	$this->layout->titulo = 'Login';
     	$this->layout->nest('content', 'user.register');
