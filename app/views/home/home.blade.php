@@ -4,6 +4,7 @@
 
 <body>
 
+
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -16,25 +17,24 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <div class="navbar-brand">
+                  <div class="navbar-brand">
 
-                {{HTML::link('/', 'Inicio')}}
-                 <!-- <input type="text" >
-                  <button type="button">Buscar</button> -->
-      
+
+     {{HTML::link('/', 'Inicio')}}
+    <input type="text" class="buscar" id="serch" placeholder="Search #hash, @user" required>
+
+<button type="button" id="buscar" class="buscar">Search</button>
+
+
                 </div>
 
+
+                  
 
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        {{HTML::link('/', 'Solicitudes')}}
-                    </li>
-                    <li>
-                        {{HTML::link('/', 'Mensajes')}}
-                    </li>
                     <li>
                      <a href="/">
                        <span class="badge pull-right">2</span>
@@ -70,7 +70,7 @@
 
 <div class="row1">
 
-  <div class="col-xs-4 col-sm-3">
+  <div class="col-xs-12 col-sm-4 col-md-3">
 
            <div class="row">
               <div class="col-md-12">
@@ -104,16 +104,17 @@
                       </ul>
 
                     </div>
+                      
 
                     
 
-                </div>}
+                </div>
 
           </div>
 
   </div>
 
-  <div class="col-xs-8 col-sm-9">
+  <div class="col-xs-12 col-sm-8 col-md-9">
 
           
           <br>
@@ -224,6 +225,10 @@ for (var a = 0; a < elem.length; a++) {
     
     final_mensaje = final_mensaje + "<a href='"  + 'hashtag/'  + elem[a].split("#")[1]  + "'>" + elem[a] + "</a>" +  " ";     
 
+   }else if (elem[a].substring(0, 1) == "@"){
+
+     final_mensaje = final_mensaje + "<a href='"  + 'user/'  + elem[a].split("@")[1]  + "'>" + elem[a] + "</a>" +  " "; 
+
    }else{
 
     final_mensaje = final_mensaje + elem[a] + " ";
@@ -289,6 +294,10 @@ for (var a = 0; a < elem.length; a++) {
    {
     
     final_mensaje = final_mensaje + "<a href='"  + 'hashtag/'  + elem[a].split("#")[1]  + "'>" + elem[a] + "</a>" +  " ";     
+
+   }else if (elem[a].substring(0, 1) == "@"){
+
+     final_mensaje = final_mensaje + "<a href='"  + 'user/'  + elem[a].split("@")[1]  + "'>" + elem[a] + "</a>" +  " "; 
 
    }else{
 

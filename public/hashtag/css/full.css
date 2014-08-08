@@ -32,3 +32,12 @@ margin-right: 10%; /* Restamos la mitad de la anchura del objeto con un margin-l
     padding: 10px 40px; 
     border-radius: 20px;
 }
+
+.buscar {
+    border: 2px solid #a1a1a1;
+    padding: 2px 0px; 
+    border-radius: 10px;
+    font-family: Arial; 
+    font-size: 7pt;
+    background-color: #FFFFFF;
+}

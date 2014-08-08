@@ -97,12 +97,46 @@
 
         <div class="row">
 
-       
-            <div class="col-xs-12 col-sm-11 col-md-10">
+            <div class="col-xs-12 col-sm-5 col-md-6">
 
                <div class="comentario" >
 
-                <h2>Resultados para  #{{$hash}}</h2>
+                <div class="panel-heading text-rigth">
+                     
+
+                    <img src="http://www.lapatilla.com/site/wp-content/uploads/2014/02/shakira.jpg" alt="@henryjason" width="100" height="100" class="img-circle">
+                    <h2>{{$user}}</h2>
+
+                    </div>
+
+                
+                
+               </div>
+
+            </div>
+
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+
+               <div class="comentario" >
+
+                <div class="panel-heading text-rigth">
+                     
+
+                 <button type="button" class="btn btn-default btn-lg btn-block">Seguiendo</button>
+
+                    </div>
+                
+               </div>
+
+               <div class="comentario" >
+
+                <div class="panel-heading text-rigth">
+                     
+
+                  <button type="button" class="btn btn-default btn-lg btn-block">Bloquead@</button>
+
+                    </div>
                 
                </div>
 
@@ -114,78 +148,36 @@
       
            <div id="hums">
 
-
-
   <?php
 
+if(!empty($userArray)){
 
-  if(!empty($hashtag)){
-
-
-
-  foreach ($hashtag as $value) {
-
-    //son las etiquetas que se van a buascar en el array
-             $etiqueta  = "@";
-             $hashtag = "#";
-
-             $hash_hums = preg_split("/[\s,]+/", $value->mensaje);
-              
-             $final_mensaje = "";
-                
-              //recorremos el array 
-            foreach ($hash_hums as $key => $hash) {
-
-          
-            
-                // si la palabra actual considen con un @ procede
-            if (strpos($hash,$etiqueta) === 0) {
-         
-            $final_mensaje = $final_mensaje."<a href='" . url('user/' .substr( $hash , 1 )) ."'>".$hash."</a>". " ";
-
-             } elseif (strpos($hash,$hashtag) === 0) {
-
-               
-
-              $final_mensaje = $final_mensaje."<a href='" . url('hashtag/' .substr( $hash , 1 )) ."'>".$hash."</a>". " ";
-
-            }else{
-
-              $final_mensaje = $final_mensaje.$hash." ";
-
-            }
-
-          }
-
-
-
+ foreach ($userArray as $value) {
   
   echo '<div class="row">'.
     '<div class="col-xs-12 col-sm-11 col-md-10">'.
 
               '<div class="comentario">' .
-                 '<strong>'. $value->nombre . " " . $value->nickname .
-                 '</strong>'. '<h5>' . $value->created_at . '</h5>'.
-                   '<p>' . $final_mensaje . '</p>'.
+                 '<h3>'. 'Nombre: ' .  $value->nombre ." ". $value->apellido .'</h3>'.
+                 '<h3>'. 'NickName: ' . $value->nickname .'</h3>'.
+                 '<h3>'. 'Telefono: ' . $value->telefono .'</h3>'.
+                 '<h3>'. 'Direccion: ' . $value->direccion .'</h3>'.
+                 '<h3>'. 'Bibliografia: ' . $value->bibliografia .'</h3>'.
               ' </div>'.
 
             '</div> </div><br> ';
 
-  }
-
-  }else{
-
-    echo '<div class="row">'.
-    '<div class="col-xs-12 col-sm-11 col-md-10">'.
-
-              '<div class="comentario">' .
-                 '<strong>'. "hashtag sin Resultadose" .
-              ' </div>'.
-
-            '</div> </div><br> ';
 
   }
 
+}else{
+
+
+}
+
+
+ 
+ 
   ?>
 
            </div>

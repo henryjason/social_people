@@ -41,5 +41,25 @@ class HashtagController extends \BaseController {
 
 	}
 
+	public function serchashtag()
+	{
+
+
+      if (Request::ajax())
+		{
+	
+         $hashtag = Input::get('hashtag');
+
+            //array del registro registrado
+         $array_hums = Hashtag::Serch_Hashtag($hashtag);
+    		
+    		return Response::json($array_hums);
+
+		}
+
+	return Redirect::to('/');
+
+	}
+
 
 }

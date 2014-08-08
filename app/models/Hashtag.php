@@ -21,6 +21,16 @@ from hashtag ha
 
 }
 
+public static function Serch_Hashtag($hashtag)
+    {
+
+  return DB::select("select DISTINCT ha.hashtag
+from hashtag ha where ha.hashtag like '%".$hashtag."%' ORDER BY ha.hashtag
+limit 10");
+
+
+
+}
 
 
 }

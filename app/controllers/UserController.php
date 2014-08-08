@@ -3,6 +3,21 @@
 class UserController extends BaseController
 {
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index($nick)
+    {
+
+        $nick = "@".$nick;
+        $array_user = User::getUser($nick);
+        $this->layout->titulo = $nick;
+        $this->layout->nest('content', 'user.perfil_user', array('userArray' => $array_user, 'user' => $nick));
+    }
+
+
 	private function validationRules()
     {
         // validate the info, create rules for the inputs
@@ -64,7 +79,9 @@ class UserController extends BaseController
         $user->nombre = $nombre;
         $user->apellido = $apellido;
         $user->nickname = $nickname;
-
+        $user->telefono = "Ø";
+        $user->direccion = "Ø";
+        $user->bibliografia = "Ø";
         $user->save();
 
         Auth::attempt(array('email' => $email, 'password' => $password, 'nombre' => $nombre, 'apellido' => $apellido, 'nickname' => $nickname));
@@ -82,5 +99,25 @@ class UserController extends BaseController
     {
         Auth::logout();
         return Redirect::to('login');
+    }
+
+    public function serchuser()
+    {
+
+
+      if (Request::ajax())
+        {
+    
+         $user = Input::get('user');
+
+         //array del registro registrado
+         $array_user = User::Serch_User($user);
+            
+            return Response::json($array_user);
+
+        }
+
+    return Redirect::to('/');
+
     }
 }
