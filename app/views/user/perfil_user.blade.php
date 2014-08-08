@@ -76,7 +76,8 @@
                     <div class="panel-heading text-rigth">
                      
 
-                    <img src="img/avatar.jpg" alt="@henryjason" width="100" height="100" class="img-circle">
+                     <img src="{{Auth::user()->getAvatar()}}" alt="@henryjason" width="100" height="100" class="img-circle">
+                    
 
                     </div>
 
@@ -95,52 +96,74 @@
           
           <br>
 
+
+
         <div class="row">
 
-            <div class="col-xs-12 col-sm-5 col-md-6">
+        <?php
 
-               <div class="comentario" >
+if(!empty($userArray)){
 
-                <div class="panel-heading text-rigth">
+echo '<div class="col-xs-12 col-sm-5 col-md-6">'.
+
+               '<div class="comentario" >'.
+
+                '<div class="panel-heading text-rigth">'.
+                  
+                    '<img src="'.$userArray[0]->avatar.'" alt="@henryjason" width="100" height="100" class="img-circle">'.
+                    '<h2>'.$user.'</h2>'.
+
+                    '</div>'.
+
+                
+                
+               '</div>'.
+
+            '</div>'.
+
+
+            '<div class="col-xs-12 col-sm-6 col-md-4">'.
+
+               '<div class="comentario" >'.
+
+                '<div class="panel-heading text-rigth">'.
                      
 
-                    <img src="http://www.lapatilla.com/site/wp-content/uploads/2014/02/shakira.jpg" alt="@henryjason" width="100" height="100" class="img-circle">
-                    <h2>{{$user}}</h2>
+                '<button type="button" class="btn btn-default btn-lg btn-block">Seguiendo</button>'.
 
-                    </div>
-
+                    '</div>'.
                 
-                
-               </div>
+               '</div>'.
 
-            </div>
+               '<div class="comentario" >'.
 
-
-            <div class="col-xs-12 col-sm-6 col-md-4">
-
-               <div class="comentario" >
-
-                <div class="panel-heading text-rigth">
+                '<div class="panel-heading text-rigth">'.
                      
 
-                 <button type="button" class="btn btn-default btn-lg btn-block">Seguiendo</button>
+                  '<button type="button" class="btn btn-default btn-lg btn-block">Bloquead@</button>'.
 
-                    </div>
+                    '</div>'.
                 
-               </div>
+               '</div>'.
 
-               <div class="comentario" >
+                '<div class="comentario" >'.
 
-                <div class="panel-heading text-rigth">
+                '<div class="panel-heading text-rigth">'.
                      
 
-                  <button type="button" class="btn btn-default btn-lg btn-block">Bloquead@</button>
+                  '<button type="button" class="btn btn-default btn-lg btn-block">Solicitud</button>'.
 
-                    </div>
+                    '</div>'.
                 
-               </div>
+               '</div>'.
 
-            </div>
+            '</div>';
+
+}
+
+
+          ?>
+
             
         </div>
 
@@ -171,6 +194,15 @@ if(!empty($userArray)){
   }
 
 }else{
+
+	echo '<div class="row">'.
+    '<div class="col-xs-12 col-sm-11 col-md-10">'.
+
+              '<div class="comentario">' .
+                 '<h3>'. 'Alias: ' . $user . " No Existe" .'</h3>'.
+              ' </div>'.
+
+            '</div> </div><br> ';
 
 
 }

@@ -76,7 +76,7 @@
                     <div class="panel-heading text-rigth">
                      
 
-                    <img src="img/avatar.jpg" alt="@henryjason" width="100" height="100" class="img-circle">
+                   <img src="{{Auth::user()->getAvatar()}}" alt="@henryjason" width="100" height="100" class="img-circle">
 
                     </div>
 
@@ -97,7 +97,7 @@
 
         <div class="row">
 
-       
+
             <div class="col-xs-12 col-sm-11 col-md-10">
 
                <div class="comentario" >
@@ -164,7 +164,7 @@
     '<div class="col-xs-12 col-sm-11 col-md-10">'.
 
               '<div class="comentario">' .
-                 '<strong>'. $value->nombre . " " . $value->nickname .
+                 '<strong>'. $value->nombre . " " . "<a href='" . url('user/' .substr( $value->nickname , 1 )) ."'>".$value->nickname."</a>" .
                  '</strong>'. '<h5>' . $value->created_at . '</h5>'.
                    '<p>' . $final_mensaje . '</p>'.
               ' </div>'.

@@ -77,32 +77,18 @@
 
                     <div class="panel-heading text-rigth">
                      
-
-                    <img src="img/avatar.jpg" alt="@henryjason" width="100" height="100" class="img-circle">
+                    <img src="{{Auth::user()->getAvatar()}}" alt="@henryjason" width="100" height="100" class="img-circle">
 
                     </div>
 
 
                     <div class="panel-heading text-rigth"><strong>{{Auth::user()->getNickName();}}</strong></div>
 
-                    <div class="panel-heading text-rigth"><strong>Amigos</strong>
-                       <ul>
-                    	 <li>Henry Jason</li>
-                     	 <li>Henry Jason2</li>
-                    	 <li>Henry Jason3</li>
-                     	 <li>Henry Jason4</li>
-                      </ul>
-
-                    </div>
-
-                     <div class="panel-heading text-rigth"><strong>Sugeridos</strong>
-                       <ul>
-                    	 <li>Henry Jason</li>
-                     	 <li>Henry Jason2</li>
-                    	 <li>Henry Jason3</li>
-                     	 <li>Henry Jason4</li>
-                      </ul>
-
+                    <div class="panel-heading text-rigth"><strong>Seguir</strong>
+                     
+                      <button type="button" class="btn btn-default btn-lg btn-block">@henryjason</button>
+                      <button type="button" class="btn btn-default btn-lg btn-block">@viviana</button>
+                      <button type="button" class="btn btn-default btn-lg btn-block">@carlos</button>
                     </div>
                       
 
@@ -241,7 +227,7 @@ for (var a = 0; a < elem.length; a++) {
     '<div class="col-xs-12 col-sm-11 col-md-10">'+
 
               '<div class="comentario">' +
-                 '<strong>'+ response[i].nombre + " " + response[i].nickname +
+                 '<strong>'+ response[i].nombre + " " + "<a href='"  + 'user/'  + response[i].nickname.split("@")[1]   + "'>" + response[i].nickname + "</a>" +
                  '</strong>'+ '<h5>' + response[i].created_at + '</h5>'+
                    '<p>' + final_mensaje +'</p>'+
               ' </div>'+
@@ -312,7 +298,7 @@ for (var a = 0; a < elem.length; a++) {
     '<div class="col-xs-12 col-sm-11 col-md-10">'+
 
               '<div class="comentario">' +
-                 '<strong>'+ response[i].nombre + " " + response[i].nickname +
+                 '<strong>'+ response[i].nombre + " " + "<a href='"  + 'user/'  + response[i].nickname.split("@")[1]   + "'>" + response[i].nickname + "</a>" +
                  '</strong>'+ '<h5>' + response[i].created_at + '</h5>'+
                    '<p>' + final_mensaje +'</p>'+
               ' </div>'+

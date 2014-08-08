@@ -79,6 +79,7 @@ class UserController extends BaseController
         $user->nombre = $nombre;
         $user->apellido = $apellido;
         $user->nickname = $nickname;
+        $user->avatar = "img/avatar.jpg";
         $user->telefono = "Ø";
         $user->direccion = "Ø";
         $user->bibliografia = "Ø";

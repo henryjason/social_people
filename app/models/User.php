@@ -35,7 +35,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
   public static function getUser($user)
     {
 
-    return DB::select("select DISTINCT u.id, u.nombre,  u.apellido, u.nickname, u.telefono,  u.direccion,  u.bibliografia
+    return DB::select("select DISTINCT u.id, u.nombre, u.avatar,  u.apellido, u.nickname, u.telefono,  u.direccion,  u.bibliografia
     from users u where u.nickname like '%".$user."' ORDER BY u.nickname
     limit 1");
 
@@ -76,5 +76,9 @@ public function getApellido()
   return $this->apellido;
 }
 
+public function getAvatar()
+{
+  return $this->avatar;
+}
 
 }
