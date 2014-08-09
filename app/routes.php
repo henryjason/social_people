@@ -32,6 +32,8 @@ Route::group(array('before' => 'auth'), function () {
      Route::get('user/{nick}', 'UserController@index'); 
     Route::resource('serchuser', 'UserController@serchuser'); 
 
+    Route::resource('seguir', 'SeguirController@seguir');
+    Route::resource('estado_seguir', 'SeguirController@estado_seguir');
 
 	Route::get('/', 'HomeController@index');
 

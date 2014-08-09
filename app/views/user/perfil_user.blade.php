@@ -3,6 +3,8 @@
 <!-- Make sure the <html> tag is set to the .full CSS class. Change the background image in the full.css file. -->
 
 <body>
+{{HTML::script('js/seguir.js');}}
+{{HTML::script('js/bloquear.js');}}
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -124,12 +126,12 @@ echo '<div class="col-xs-12 col-sm-5 col-md-6">'.
 
             '<div class="col-xs-12 col-sm-6 col-md-4">'.
 
-               '<div class="comentario" >'.
+               '<div  class="comentario" >'.
 
                 '<div class="panel-heading text-rigth">'.
                      
 
-                '<button type="button" class="btn btn-default btn-lg btn-block">Seguiendo</button>'.
+                '<button type="button" id="seguir" class="btn btn-default btn-lg btn-block"></button>'.
 
                     '</div>'.
                 
@@ -220,5 +222,24 @@ if(!empty($userArray)){
 </div>
 
 </body>
+
+
+
+<?php 
+
+if(!empty($userArray)){
+
+echo "<script> var id_user = ".Auth::user()->getId()." </script>";
+echo "<script> var id_seguir = ".$userArray[0]->id." </script>";
+
+}else {
+
+echo '<script> var id_user = 0 </script>';
+echo '<script> var id_seguir = 0 </script>';
+
+}
+
+
+ ?>
 
 </html>

@@ -7,14 +7,25 @@ class Seguir extends Eloquent
     protected $guarded    = array('id');
     public    $timestamps = false;
 
- public static function ejemplo()
-    {
-        return DB::select("select * from music");
-    }
 
 
-    
+
+public static function getSeguir($id_user, $id_seguir) {
+
+
+
+  return DB::select("select s.id from seguir s where s.usuario_id = $id_user and s.usuario_id_seguir = $id_seguir");
 
 }
 
+
+public static function estado_seguir($id_user, $id_seguir) {
+
+ return DB::select("select exists (select true from seguir s where s.usuario_id = $id_user and s.usuario_id_seguir = $id_seguir)");
+
+
+}
+
+
+}
 

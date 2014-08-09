@@ -8,6 +8,7 @@
      {{HTML::script('js/jquery-ui.js');}}
       {{HTML::script('js/bootstrap.min.js');}}
       {{HTML::script('js/hums.js');}}
+      
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
