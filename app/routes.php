@@ -38,6 +38,11 @@ Route::group(array('before' => 'auth'), function () {
     Route::resource('bloquear', 'BloqueoController@bloquear');
     Route::resource('estado_bloqueo', 'BloqueoController@estado_bloqueo');
 
+    Route::resource('editarAvatar', 'AvatarController@editarAvatar');
+    Route::resource('deleteAvatar', 'AvatarController@deleteAvatar');
+   
+
+
 	Route::get('/', 'HomeController@index');
 
     Route::resource('hums', 'HumsController@index');

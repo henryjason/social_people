@@ -78,7 +78,7 @@
                     <div class="panel-heading text-rigth">
                      
 
-                     <img src="{{Auth::user()->getAvatar()}}" alt="@henryjason" width="100" height="100" class="img-circle">
+                     <img id="editar_avatar" src="/{{Auth::user()->getAvatar()}}" alt="@henryjason" width="100" height="100" class="img-circle">
                     
 
                     </div>
@@ -112,7 +112,7 @@ echo '<div class="col-xs-12 col-sm-5 col-md-6">'.
 
                 '<div class="panel-heading text-rigth">'.
                   
-                    '<img src="'.$userArray[0]->avatar.'" alt="@henryjason" width="100" height="100" class="img-circle">'.
+                    '<img src="/'.$userArray[0]->avatar.'" alt="@henryjason" width="100" height="100" class="img-circle">'.
                     '<h2>'.$user.'</h2>'.
 
                     '</div>'.

@@ -76,7 +76,7 @@
                     <div class="panel-heading text-rigth">
                      
 
-                   <img src="{{Auth::user()->getAvatar()}}" alt="@henryjason" width="100" height="100" class="img-circle">
+                   <img id="editar_avatar" src="/{{Auth::user()->getAvatar()}}" alt="@henryjason" width="100" height="100" class="img-circle">
 
                     </div>
 

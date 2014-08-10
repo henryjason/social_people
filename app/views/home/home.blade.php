@@ -77,22 +77,12 @@
 
                     <div class="panel-heading text-rigth">
                      
-                    <img src="{{Auth::user()->getAvatar()}}" alt="@henryjason" width="100" height="100" class="img-circle">
+                    <img id="editar_avatar" src="{{Auth::user()->getAvatar()}}" title="Editar Avatar" width="100" height="100" class="img-circle">
 
                     </div>
-
 
                     <div class="panel-heading text-rigth"><strong>{{Auth::user()->getNickName();}}</strong></div>
-
-                    <div class="panel-heading text-rigth"><strong>Seguir</strong>
-                     
-                      <button type="button" class="btn btn-default btn-lg btn-block">@henryjason</button>
-                      <button type="button" class="btn btn-default btn-lg btn-block">@viviana</button>
-                      <button type="button" class="btn btn-default btn-lg btn-block">@carlos</button>
-                    </div>
-                      
-
-                    
+ 
 
                 </div>
 
@@ -324,6 +314,7 @@ $("#hums").append($div);
 });
 
 </script>
+
 
 
 </body>
