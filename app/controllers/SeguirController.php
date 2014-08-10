@@ -2,15 +2,6 @@
 
 class SeguirController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
 
     /**
 	 * Display a listing of the resource.
@@ -28,7 +19,10 @@ class SeguirController extends \BaseController {
          $id_seguir = Input::get('id_seguir');
 	
          $id = Seguir::getSeguir($id_user, $id_seguir);
-        
+
+         $id_bloqueado = Bloquear::getbloquear($id_seguir, $id_user );
+
+        if($id_bloqueado == null) {
 
          if($id  == null){
 
@@ -37,12 +31,17 @@ class SeguirController extends \BaseController {
 		$seguir->usuario_id_seguir = $id_seguir;
 		$seguir->save();
 
+
+
+
          }else{
 
          $seguir = Seguir::findOrFail($id[0]->id);
 		 $seguir->delete();
 
          }
+
+     }//fin si usuario no esta bloqueado
 
             $array_seguir = Seguir::estado_seguir($id_user, $id_seguir);
 

@@ -7,12 +7,10 @@ class Menciones extends Eloquent
     protected $guarded    = array('id');
     public    $timestamps = false;
 
- public static function ejemplo()
-    {
-        return DB::select("select * from music");
-    }
+public static function mencion_existe($id_msg, $id_user) {
 
-
+return DB::select("select m.id from menciones m where m.mensaje_id = $id_msg and m.usuario_id = $id_user");
+}
     
 
 }

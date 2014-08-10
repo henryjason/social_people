@@ -35,6 +35,9 @@ Route::group(array('before' => 'auth'), function () {
     Route::resource('seguir', 'SeguirController@seguir');
     Route::resource('estado_seguir', 'SeguirController@estado_seguir');
 
+    Route::resource('bloquear', 'BloqueoController@bloquear');
+    Route::resource('estado_bloqueo', 'BloqueoController@estado_bloqueo');
+
 	Route::get('/', 'HomeController@index');
 
     Route::resource('hums', 'HumsController@index');

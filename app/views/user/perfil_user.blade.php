@@ -132,28 +132,8 @@ echo '<div class="col-xs-12 col-sm-5 col-md-6">'.
                      
 
                 '<button type="button" id="seguir" class="btn btn-default btn-lg btn-block"></button>'.
-
-                    '</div>'.
-                
-               '</div>'.
-
-               '<div class="comentario" >'.
-
-                '<div class="panel-heading text-rigth">'.
-                     
-
-                  '<button type="button" class="btn btn-default btn-lg btn-block">Bloquead@</button>'.
-
-                    '</div>'.
-                
-               '</div>'.
-
-                '<div class="comentario" >'.
-
-                '<div class="panel-heading text-rigth">'.
-                     
-
-                  '<button type="button" class="btn btn-default btn-lg btn-block">Solicitud</button>'.
+                '<button type="button" id="bloquear" class="btn btn-default btn-lg btn-block"></button>'.
+                '<button type="button" class="btn btn-default btn-lg btn-block">Solicitud</button>'.
 
                     '</div>'.
                 

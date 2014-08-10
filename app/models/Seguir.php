@@ -26,6 +26,15 @@ public static function estado_seguir($id_user, $id_seguir) {
 
 }
 
+public static function usuario_me_siguen($id_user) {
+
+ return DB::select("select *
+from seguir s where s.usuario_id_seguir = $id_user order by s.id DESC");
+
+
+}
+
+
 
 }
 

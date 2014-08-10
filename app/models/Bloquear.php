@@ -12,12 +12,12 @@ public static function getbloquear($id_user, $id_bloquear) {
 
 
 
-  return DB::select("select b.id from bloquear b where s.usuario_id = $id_user and s.usuario_id_bloqueo = $id_bloquear");
+  return DB::select("select b.id from bloquear b where b.usuario_id = $id_user and b.usuario_id_bloqueo = $id_bloquear");
 
 }
 
 
-public static function estado_bloqueo($id_user, $id_seguir) {
+public static function estado_bloqueo($id_user, $id_bloquear) {
 
  return DB::select("select exists (select true from bloquear b where b.usuario_id = $id_user and b.usuario_id_bloqueo = $id_bloquear)");
 

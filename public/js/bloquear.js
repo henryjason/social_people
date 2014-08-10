@@ -1,21 +1,24 @@
 $(document).ready(function() {
 
 
-$("#seguir").on('click', function () {
+$("#bloquear").on('click', function () {
 
     $.ajax({
-    url: '/seguir',
+    url: '/bloquear',
     type: 'POST',
-    data: {id_user:id_user, id_seguir:id_seguir},
+    data: {id_user:id_user, id_bloquear:id_seguir},
   })
   .done(function(response) {
 
 console.log(response);
 
   if(response[0].exists){
-     $("#seguir").html('Siguiendo'); 
+     $("#bloquear").html('Bloqueado');
+     $("#seguir").html('Seguir'); 
+     $("#seguir").hide();
    }else{
-     $("#seguir").html('Seguir');
+     $("#bloquear").html('Desbloqueado');
+      $("#seguir").show();
    }
 
 
@@ -35,18 +38,21 @@ if(id_user != 0){
 
 
 $.ajax({
-    url: '/estado_seguir',
+    url: '/estado_bloqueo',
     type: 'POST',
-    data: {id_user:id_user, id_seguir:id_seguir},
+    data: {id_user:id_user, id_bloquear:id_seguir},
   })
   .done(function(response) {
 
 console.log(response);
 
   if(response[0].exists){
-     $("#seguir").html('Siguiendo'); 
-   }else{
+     $("#bloquear").html('Bloqueado'); 
      $("#seguir").html('Seguir');
+      $("#seguir").hide();
+   }else{
+     $("#bloquear").html('Desbloqueado');
+     $("#seguir").show();
    }
 
 

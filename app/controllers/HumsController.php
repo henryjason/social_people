@@ -9,9 +9,6 @@ class HumsController extends \BaseController {
 	 */
 	public function index()
 	{
-			  //$piloto_id = Input::get('piloto');
-		//$avion_id = Input::get('avion');
-        
 
 		if (Request::ajax())
 		{
@@ -33,6 +30,10 @@ class HumsController extends \BaseController {
 
          //  proceamos el mensaje para guardar los etiquetados y los hashtag
          $this->procesarHums(Input::get('mensaje'), $msg_id, $id, $nickname);
+
+         //procesar los usuario que siguen al usuario que registro el mensaje
+
+         $this->Procesar_usuario_siguen($msg_id, $id);
 
             //traemos todos los hums del usuario actual
          $array_hums = Hums::myHums($id);
@@ -138,6 +139,40 @@ class HumsController extends \BaseController {
 
 
 	}
+
+
+
+
+
+
+    private function Procesar_usuario_siguen($msg_id, $id_usuario){
+
+
+          $list_usuario_siguen = Seguir::usuario_me_siguen($id_usuario);
+
+          //recorremos la lista de seguidores y los guardamos en mensiones respecto al msg actual
+
+         foreach ($list_usuario_siguen as $key => $item_usuario) {
+
+         
+                  if($id_usuario != $item_usuario->usuario_id){
+                  
+                  $Menciones = array(
+                  'mensaje_id' => $msg_id,
+                  'usuario_id' => $item_usuario->usuario_id,
+                  'estado' => 0
+
+                   );
+            
+            //creamos un nuevo registro 
+         Menciones::create($Menciones);
+
+           }
+    }
+
+
+
+}
 
 
 }

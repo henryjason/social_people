@@ -2,85 +2,99 @@
 
 class BloqueoController extends \BaseController {
 
-	/**
+	 /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-		//
-	}
+	 public function bloquear()
+	 {
+
+	 	if (Request::ajax())
+	 	{
 
 
-	/**
-	 * Show the form for creating a new resource.
+	 		$id_user = Input::get('id_user');
+	 		$id_bloquear = Input::get('id_bloquear');
+	 		
+	 		$id = Bloquear::getbloquear($id_user, $id_bloquear);
+	 		
+
+	 		if($id  == null){
+
+	 			$bloquear = new Bloquear;
+	 			$bloquear->usuario_id = $id_user;
+	 			$bloquear->usuario_id_bloqueo = $id_bloquear;
+	 			$bloquear->save();
+
+
+		        //como esta bloqueado eliminamos seguir si lo seguimos
+	 			$id = Seguir::getSeguir($id_user, $id_bloquear);
+
+	 			if($id  != null){
+
+	 				$seguir = Seguir::findOrFail($id[0]->id);
+	 				$seguir->delete();
+
+	 			}
+
+
+		         //como esta bloqueado eliminamos seguir si el nos sigue
+	 			$id = Seguir::getSeguir($id_bloquear, $id_user);
+
+	 			if($id  != null){
+
+	 				$seguir = Seguir::findOrFail($id[0]->id);
+	 				$seguir->delete();
+
+	 			}
+
+
+	 		}else{
+
+	 			$bloquear = Bloquear::findOrFail($id[0]->id);
+	 			$bloquear->delete();
+
+	 		}
+
+	 		$array_bloquear = Bloquear::estado_bloqueo($id_user, $id_bloquear);
+
+
+	 		return Response::json($array_bloquear);
+
+	 	}
+
+	 	return Redirect::to('/');
+
+
+	 }
+
+ /**
+	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		//
-	}
+ public function estado_bloqueo()
+ {
+
+ 	if (Request::ajax())
+ 	{
 
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+ 		$id_user = Input::get('id_user');
+ 		$id_bloquear = Input::get('id_bloquear');
+ 		
+ 		
+ 		$array_bloquear = Bloquear::estado_bloqueo($id_user, $id_bloquear);
+
+ 		return Response::json($array_bloquear);
+
+ 	}
+
+ 	return Redirect::to('/');
 
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+ }
 
 
 }
