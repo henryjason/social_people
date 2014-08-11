@@ -2,6 +2,8 @@
 <html class="full" lang="en">
 <!-- Make sure the <html> tag is set to the .full CSS class. Change the background image in the full.css file. -->
 
+{{HTML::script('js/aceptar_rechachar_solicitud.js');}}
+
 <body>
 
     <!-- Navigation -->
@@ -33,11 +35,8 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                    
-                    <li>
-                     <a href="/">
-                       <span class="badge pull-right">2</span>
-                       Notificaciones</a>
-      
+                    <li id="numSolicitud">
+                   
                     </li>
 
                     <li>
@@ -195,6 +194,10 @@
  
 </div>
 
+<?php 
+//es necesario para usarlo en los archivo js
+echo "<script> var id_user = ".Auth::user()->getId()." </script>";
+ ?>
 </body>
 
 </html>

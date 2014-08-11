@@ -2,6 +2,8 @@
 <html class="full" lang="en">
 <!-- Make sure the <html> tag is set to the .full CSS class. Change the background image in the full.css file. -->
 
+{{HTML::script('js/aceptar_rechachar_solicitud.js');}}
+
 <body>
 
 
@@ -35,11 +37,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                     <a href="/">
-                       <span class="badge pull-right">2</span>
-                       Notificaciones</a>
-      
+                    <li id="numSolicitud">
+  
+
                     </li>
 
                     <li>
@@ -108,7 +108,6 @@
                     <select id="estado" class="form-control">
                       <option value="0">Pùblico</option>
                       <option value="1">Privado</option>
-                      <option value="2">Solo Yo</option>
 
                       </select>
 
@@ -316,6 +315,7 @@ $("#hums").append($div);
 </script>
 
 
+<?php echo "<script> var id_user = ".Auth::user()->getId()." </script>"; ?>
 
 </body>
 

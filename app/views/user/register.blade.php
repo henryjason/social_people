@@ -2,7 +2,7 @@
 <html class="full" lang="en">
 <!-- Make sure the <html> tag is set to the .full CSS class. Change the background image in the full.css file. -->
 
-
+ {{HTML::script('js/apiFacebook.js');}}
 
 <body>
 
@@ -241,9 +241,16 @@
    <div class="row">
        <div class="col-md-12">
 
-       <div class="facebook">
 
-           <div><strong>Conectar con facebook</strong></div>
+
+       <div class="facebook">
+       <div id="fb-root"></div>
+
+  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+
+<div id="status">
+</div>
 
 </div>
 
@@ -259,6 +266,11 @@
 </div>
 
 
+
+<script>
+  
+
+</script>
 
 </body>
 

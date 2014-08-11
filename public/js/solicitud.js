@@ -1,21 +1,23 @@
 $(document).ready(function() {
 
 
-$("#seguir").on('click', function () {
+$("#solicitud").on('click', function () {
 
     $.ajax({
-    url: '/seguir',
+    url: '/solicitud',
     type: 'POST',
-    data: {id_user:id_user, id_seguir:id_seguir},
+    data: {id_user:id_user, id_solicitud:id_seguir},
   })
   .done(function(response) {
 
 console.log(response);
 
   if(response[0].exists){
-     $("#seguir").html('Siguiendo'); 
+     $("#solicitud").html('Solicitud enviada');
+    
    }else{
-     $("#seguir").html('Seguir');
+     $("#solicitud").html('enviar solicitud'); 
+    
    }
 
 
@@ -35,19 +37,22 @@ if(id_user != 0){
 
 
 $.ajax({
-    url: '/estado_seguir',
+    url: '/estado_solicitud',
     type: 'POST',
-    data: {id_user:id_user, id_seguir:id_seguir},
+    data: {id_user:id_user, id_solicitud:id_seguir},
   })
   .done(function(response) {
 
 console.log(response);
 
   if(response[0].exists){
-     $("#seguir").html('Siguiendo'); 
+     $("#solicitud").html('Solicitud enviada');
+    
    }else{
-     $("#seguir").html('Seguir');
+     $("#solicitud").html('enviar solicitud'); 
+    
    }
+
 
 
 
@@ -58,10 +63,6 @@ console.log(response);
   });
 
 } // fin if
-
-
-
-
 
 
 });

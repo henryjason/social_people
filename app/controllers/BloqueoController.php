@@ -16,9 +16,9 @@ class BloqueoController extends \BaseController {
 
 	 		$id_user = Input::get('id_user');
 	 		$id_bloquear = Input::get('id_bloquear');
-	 		
+
 	 		$id = Bloquear::getbloquear($id_user, $id_bloquear);
-	 		
+
 
 	 		if($id  == null){
 
@@ -46,6 +46,28 @@ class BloqueoController extends \BaseController {
 
 	 				$seguir = Seguir::findOrFail($id[0]->id);
 	 				$seguir->delete();
+
+	 			}
+
+
+	 			  //como esta bloqueado eliminamos Las solicitud lo enviamos
+	 			$id = Solicitud::getSolicitud($id_user, $id_bloquear);
+
+	 			if($id  != null){
+
+	 				$solicitud = Solicitud::findOrFail($id[0]->id);
+	 				$solicitud->delete();
+
+	 			}
+
+
+		         //como esta bloqueado eliminamos la solicitud  si el nos la envio
+	 			$id = Solicitud::getSolicitud($id_bloquear, $id_user);
+
+	 			if($id  != null){
+
+	 				$solicitud = Solicitud::findOrFail($id[0]->id);
+	 				$solicitud->delete();
 
 	 			}
 
@@ -83,8 +105,8 @@ class BloqueoController extends \BaseController {
 
  		$id_user = Input::get('id_user');
  		$id_bloquear = Input::get('id_bloquear');
- 		
- 		
+
+
  		$array_bloquear = Bloquear::estado_bloqueo($id_user, $id_bloquear);
 
  		return Response::json($array_bloquear);

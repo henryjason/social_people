@@ -38,6 +38,12 @@ Route::group(array('before' => 'auth'), function () {
     Route::resource('bloquear', 'BloqueoController@bloquear');
     Route::resource('estado_bloqueo', 'BloqueoController@estado_bloqueo');
 
+     Route::resource('solicitud', 'SolicitudController@solicitud');
+    Route::resource('estado_solicitud', 'SolicitudController@estado_solicitud');
+     Route::resource('getsolicitud', 'SolicitudController@getsolicitud');
+     Route::get('putsolicitud/{id}/{estado}', 'SolicitudController@putsolicitud'); 
+   
+
     Route::resource('editarAvatar', 'AvatarController@editarAvatar');
     Route::resource('deleteAvatar', 'AvatarController@deleteAvatar');
    

@@ -15,10 +15,13 @@ console.log(response);
   if(response[0].exists){
      $("#bloquear").html('Bloqueado');
      $("#seguir").html('Seguir'); 
+      $("#solicitud").html('Enviar Solicitud'); 
      $("#seguir").hide();
+     $("#solicitud").hide();
    }else{
      $("#bloquear").html('Desbloqueado');
       $("#seguir").show();
+      $("#solicitud").show();
    }
 
 
@@ -49,10 +52,13 @@ console.log(response);
   if(response[0].exists){
      $("#bloquear").html('Bloqueado'); 
      $("#seguir").html('Seguir');
+     $("#solicitud").html('Enviar Solicitud');
       $("#seguir").hide();
+      $("#solicitud").hide();
    }else{
      $("#bloquear").html('Desbloqueado');
      $("#seguir").show();
+     $("#solicitud").show();
    }
 
 

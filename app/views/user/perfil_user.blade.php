@@ -5,6 +5,9 @@
 <body>
 {{HTML::script('js/seguir.js');}}
 {{HTML::script('js/bloquear.js');}}
+{{HTML::script('js/solicitud.js');}}
+
+{{HTML::script('js/aceptar_rechachar_solicitud.js');}}
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -35,10 +38,8 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                    
-                    <li>
-                     <a href="/">
-                       <span class="badge pull-right">2</span>
-                       Notificaciones</a>
+                    <li id="numSolicitud">
+               
       
                     </li>
 
@@ -132,8 +133,8 @@ echo '<div class="col-xs-12 col-sm-5 col-md-6">'.
                      
 
                 '<button type="button" id="seguir" class="btn btn-default btn-lg btn-block"></button>'.
+                '<button type="button" id="solicitud" class="btn btn-default btn-lg btn-block">Solicitud</button>'.
                 '<button type="button" id="bloquear" class="btn btn-default btn-lg btn-block"></button>'.
-                '<button type="button" class="btn btn-default btn-lg btn-block">Solicitud</button>'.
 
                     '</div>'.
                 

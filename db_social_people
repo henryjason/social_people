@@ -3,6 +3,7 @@ drop table if exists menciones;
 drop table if exists hums;
 drop table if exists bloquear;
 drop table if exists seguir;
+drop table if exists solicitud;
 drop table if exists  users;
 
 
@@ -15,7 +16,7 @@ create table users(
 	email varchar not null,
 	nickname varchar not null,
 	telefono varchar,
-	dirección varchar,
+	direccion varchar,
 	bibliografia varchar,
 	remember_token varchar,
 	created_at timestamp NOT NULL default CURRENT_TIMESTAMP,
@@ -38,6 +39,15 @@ create table bloquear(
 	usuario_id_bloqueo integer not null,
 	constraint fk_bloquear_usuario foreign key (usuario_id) references users(id),
 	constraint fk_bloquear_usuario_to foreign key (usuario_id_bloqueo) references users(id)
+);
+
+create table solicitud(
+	id serial not null primary key,
+	usuario_id integer not null,
+	usuario_id_solicitud integer not null,
+	estado integer not null,
+	constraint fk_solicitud_usuario foreign key (usuario_id) references users(id),
+	constraint fk_solicitud_usuario_to foreign key (usuario_id_solicitud) references users(id)
 );
 
 create table hums(

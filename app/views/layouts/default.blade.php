@@ -8,8 +8,9 @@
      {{HTML::script('js/jquery-ui.js');}}
       {{HTML::script('js/bootstrap.min.js');}}
       {{HTML::script('js/serch.js');}}
-      {{HTML::script('js/hums.js');}}
        {{HTML::script('js/avatar.js');}}
+
+
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -74,5 +75,7 @@
 </div>
 
 </div>
+
+
 </body>
 </html>
