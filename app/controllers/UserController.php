@@ -50,6 +50,7 @@ class UserController extends BaseController
         return Redirect::to('login')->withErrors(array('invalid_credentials' => 'No existe usuario')); 
     }
 
+
     public function register()
     {
         $rules = $this->validationRules();
@@ -121,4 +122,70 @@ class UserController extends BaseController
     return Redirect::to('/');
 
     }
+
+
+       public function fblogin()
+    {
+
+         if (Request::ajax())
+        {
+    
+        
+        $rules = $this->validationRules();
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            // o si es fail
+            return Response::json(0);
+        }
+
+        $userdata = array(
+            'email'     => Input::get('email'),
+            'password'  => Input::get('password')
+        );
+
+        if (Auth::attempt($userdata)) {
+                 // 1 si se loguea
+                 return Response::json(1);
+
+           // si el usuario no esta registrado     
+        }else{
+
+        $email = Input::get('email');
+        $password = Input::get('password');
+        $nombre = Input::get('nombre');
+        $apellido = Input::get('apellido');
+        $nickname = '@'.Input::get('nickname');
+
+
+        $user = new User;
+
+        $user->email = $email;
+        $user->password = Hash::make($password);
+        $user->nombre = $nombre;
+        $user->apellido = $apellido;
+        $user->nickname = $nickname;
+        $user->avatar = "img/avatar.jpg";
+        $user->telefono = "Ø";
+        $user->direccion = "Ø";
+        $user->bibliografia = "Ø";
+        $user->save();
+
+        Auth::attempt(array('email' => $email, 'password' => $password, 'nombre' => $nombre, 'apellido' => $apellido, 'nickname' => $nickname));
+
+        return Response::json(1);
+
+        }
+
+
+
+        }
+
+    return Redirect::to('/');
+
+
+    }
+
+
+
 }

@@ -19,7 +19,7 @@ Route::get('register', 'HomeController@register');
 
 Route::get('logout', 'UserController@logout');
 
-
+Route::resource('fblogin', 'UserController@fblogin');
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
 Route::get('auth', 'UserController@isLogged');

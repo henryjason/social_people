@@ -1,9 +1,10 @@
 $(document).ready(function() {
 
+getsolicitud();
 
-
-  getsolicitud();
-
+ var sleep=setInterval(function(){getsolicitud()},2000);
+ //clearInterval(sleep);         
+  
 
 function getsolicitud(){
 
@@ -14,7 +15,8 @@ $.ajax({
   })
   .done(function(response) {
 
-console.log(response);
+//console.log(response);
+$("#numSolicitud").empty();
 
 var solicitud = '<a data-toggle="dropdown">' +
                        '<span class="badge pull-right">'+response.length+'</span>' +
@@ -31,8 +33,8 @@ for (var i = 0; i < response.length; i++) {
        solicitud = solicitud +  '<li>'+
                  '<div class="col-md-12">'+
      '<h5>'+response[i].nickname+'</h5>'+
-    '<a href="putsolicitud/'+response[i].id+'/1">Aceptar</a>'   + " " +
-   '<a href="putsolicitud/'+response[i].id+'/0">Rechazar</a>'   +
+    '<a href="/putsolicitud/'+response[i].id+'/1">Aceptar</a>'   + " " +
+   '<a href="/putsolicitud/'+response[i].id+'/0">Rechazar</a>'   +
 '</div>'+'<div>____________________</div>'
 
                  '</li>';
