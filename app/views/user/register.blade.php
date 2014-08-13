@@ -130,8 +130,7 @@
        <div class="col-xs-7 col-sm-7 col-md-7">
           <div id="fb-root"></div>
 
-          <fb:login-button scope="public_profile,email" onlogin="checkLoginState()"></fb:login-button>
-
+          <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
           <div id="status"></div>
       </div>
 
@@ -336,7 +335,7 @@
 
     FB.api('/me', function(response) {
 
-      console.log(response);
+      //console.log(response);
 
      // console.log('Successful login for: ' + response.email);
       document.getElementById('status').innerHTML = response.name;
@@ -361,6 +360,10 @@
     if(respuesta==1){
 
      window.location.href="/";
+        
+        /*FB.logout(function(response) {
+        // Person is now logged out
+    });*/
 
     }
 
@@ -372,6 +375,8 @@
 
     });
   }
+
+
 
 </script>
 

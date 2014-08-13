@@ -71,6 +71,7 @@ class UserController extends BaseController
         $nombre = Input::get('nombre');
         $apellido = Input::get('apellido');
         $nickname = '@'.Input::get('nickname');
+        $type = 1;
 
 
         $user = new User;
@@ -84,9 +85,10 @@ class UserController extends BaseController
         $user->telefono = "Ø";
         $user->direccion = "Ø";
         $user->bibliografia = "Ø";
+        $user->type = $type;
         $user->save();
 
-        Auth::attempt(array('email' => $email, 'password' => $password, 'nombre' => $nombre, 'apellido' => $apellido, 'nickname' => $nickname));
+        Auth::attempt(array('email' => $email, 'password' => $password, 'nombre' => $nombre, 'apellido' => $apellido, 'nickname' => $nickname, 'type' => $type));
         return Redirect::to('/');
     }
 
@@ -156,6 +158,7 @@ class UserController extends BaseController
         $nombre = Input::get('nombre');
         $apellido = Input::get('apellido');
         $nickname = '@'.Input::get('nickname');
+        $type = Input::get('type');
 
 
         $user = new User;
@@ -169,10 +172,12 @@ class UserController extends BaseController
         $user->telefono = "Ø";
         $user->direccion = "Ø";
         $user->bibliografia = "Ø";
+        $user->type = 2;
         $user->save();
+ 
 
-        Auth::attempt(array('email' => $email, 'password' => $password, 'nombre' => $nombre, 'apellido' => $apellido, 'nickname' => $nickname));
-
+  Auth::attempt(array('email' => $email, 'password' => $password, 'nombre' => $nombre, 'apellido' => $apellido, 'nickname' => $nickname, 'type' => $type));
+       
         return Response::json(1);
 
         }
@@ -185,6 +190,91 @@ class UserController extends BaseController
 
 
     }
+
+
+        public function editar_perfil()
+    {
+
+$type =  Auth::user()->getType();
+  
+           if($type==1){
+
+        $rules = $this->validationRules();
+        $rules['password'] = 'required|alphaNum|min:3|Confirmed';
+        $rules['password_confirmation'] = 'required|alphaNum|min:3';
+
+        $validator = Validator::make(Input::all(), $rules);
+
+     // if the validator fails, redirect back to the form
+        if ($validator->fails()) {
+            return Redirect::to('/editar_perfil')
+                ->withErrors($validator) // send back all errors to the login form
+                ->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
+        }
+
+        $email = Input::get('email');
+        $password = Input::get('password');
+        $nombre = Input::get('nombre');
+        $apellido = Input::get('apellido');
+        $telefono = Input::get('telefono');
+        $direccion = Input::get('direccion');
+        $bibliografia = Input::get('bibliografia');
+        $nickname = '@'.Input::get('nickname');
+        
+
+
+        $user = User::findOrFail(Auth::user()->getId());
+
+        $user->email = $email;
+        $user->password = Hash::make($password);
+        $user->nombre = $nombre;
+        $user->apellido = $apellido;
+        $user->nickname = $nickname;
+        $user->telefono = $telefono;
+        $user->direccion = $direccion;
+        $user->bibliografia = $bibliografia;
+        $user->type =$type;
+        $user->save();
+
+
+   
+  Auth::attempt(array('email' => $email, 'password' => $password, 'nombre' => $nombre, 'apellido' => $apellido, 'nickname' => $nickname, 'type' => $type));
+   
+}else{
+
+        $nombre = Input::get('nombre');
+        $apellido = Input::get('apellido');
+        $telefono = Input::get('telefono');
+        $direccion = Input::get('direccion');
+        $bibliografia = Input::get('bibliografia');
+        $nickname = '@'.Input::get('nickname');
+        
+
+
+        $user = User::findOrFail(Auth::user()->getId());
+
+        $user->email = Auth::user()->getEmail();
+        $user->password = Auth::user()->getPass();
+        $user->nombre = $nombre;
+        $user->apellido = $apellido;
+        $user->nickname = $nickname;
+        $user->telefono = $telefono;
+        $user->direccion = $direccion;
+        $user->bibliografia = $bibliografia;
+        $user->type =$type;
+        $user->save();
+
+
+   
+  Auth::attempt(array('email' => Auth::user()->getEmail(), 'password' => Auth::user()->getPass(), 'nombre' => $nombre, 'apellido' => $apellido, 'nickname' => $nickname, 'type' => $type));
+   
+
+
+}
+       return Redirect::to('/editar_perfil');
+
+    }
+
 
 
 

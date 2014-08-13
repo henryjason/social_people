@@ -22,7 +22,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password', 'remember_token');
-	protected $fillable   = array('avatar','nombre','apellido','email','nickname','telefono','direccion','bibliografia','password');
+	protected $fillable   = array('avatar','nombre','apellido','email','nickname','telefono','direccion','bibliografia','password','type');
   	protected $guarded    = array('id');
   	public    $timestamps = false;
 
@@ -61,6 +61,19 @@ public function getId()
   return $this->id;
 }
 
+public function getEmail()
+{
+  return $this->email;
+}
+
+public function getPass()
+{
+
+
+  return $this->password;
+ 
+}
+
 public function getNickName()
 {
   return $this->nickname;
@@ -79,6 +92,26 @@ public function getApellido()
 public function getAvatar()
 {
   return $this->avatar;
+}
+
+public function getTelefono()
+{
+  return $this->telefono;
+}
+
+public function getDireccion()
+{
+  return $this->direccion;
+}
+
+public function getBibliografia()
+{
+  return $this->bibliografia;
+}
+
+public function getType()
+{
+  return $this->type;
 }
 
 }

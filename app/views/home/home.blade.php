@@ -31,7 +31,7 @@
                 </div>
 
 
-                  
+              
 
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -43,7 +43,7 @@
                     </li>
 
                     <li>
-                       {{HTML::link('/', 'Perfil')}}
+                       {{HTML::link('/editar_perfil', 'Perfil')}}
                     </li>
 
                     <li>
@@ -179,8 +179,15 @@ function StoreHums(data){
   })
   .done(function(response) {
 
-$("#hums").empty();
+    console.log(response);
 
+if(response==true){
+
+alert("El maximo de caracteres permitido es 140");
+
+}else{
+
+$("#hums").empty();
 
 //recorremos resultados de ajax
 for (var i = 0; i < response.length; i++) {
@@ -229,6 +236,8 @@ $("#hums").append($div);
 
       
     };
+
+  }//fin else
 
   })
   .fail(function(response) {

@@ -40,7 +40,7 @@
                     </li>
 
                     <li>
-                       {{HTML::link('/', 'Perfil')}}
+                       {{HTML::link('/editar_perfil', 'Perfil')}}
                     </li>
 
                     <li>

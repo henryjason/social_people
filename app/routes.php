@@ -31,6 +31,7 @@ Route::group(array('before' => 'auth'), function () {
   
      Route::get('user/{nick}', 'UserController@index'); 
     Route::resource('serchuser', 'UserController@serchuser'); 
+    Route::resource('editarperfil', 'UserController@editar_perfil'); 
 
     Route::resource('seguir', 'SeguirController@seguir');
     Route::resource('estado_seguir', 'SeguirController@estado_seguir');
@@ -46,6 +47,7 @@ Route::group(array('before' => 'auth'), function () {
 
     Route::resource('editarAvatar', 'AvatarController@editarAvatar');
     Route::resource('deleteAvatar', 'AvatarController@deleteAvatar');
+    Route::resource('editar_perfil', 'EditarController@index');
    
 
 

@@ -44,7 +44,7 @@
                     </li>
 
                     <li>
-                       {{HTML::link('/', 'Perfil')}}
+                       {{HTML::link('/editar_perfil', 'Perfil')}}
                     </li>
 
                     <li>
@@ -122,10 +122,12 @@ echo '<div class="col-xs-12 col-sm-5 col-md-6">'.
                 
                '</div>'.
 
-            '</div>'.
+            '</div>';
 
 
-            '<div class="col-xs-12 col-sm-6 col-md-4">'.
+              if($userArray[0]->id != Auth::user()->getId()){
+
+            echo '<div class="col-xs-12 col-sm-6 col-md-4">'.
 
                '<div  class="comentario" >'.
 
@@ -141,6 +143,7 @@ echo '<div class="col-xs-12 col-sm-5 col-md-6">'.
                '</div>'.
 
             '</div>';
+            }
 
 }
 

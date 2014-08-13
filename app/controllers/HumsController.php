@@ -2,6 +2,16 @@
 
 class HumsController extends \BaseController {
 
+
+
+private function validationRules()
+    {
+        // validate the info, create rules for the inputs
+        return array(
+            'mensaje' => 'required|alphaNum|min:1|max:140'
+        );
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -12,6 +22,16 @@ class HumsController extends \BaseController {
 
 		if (Request::ajax())
 		{
+
+                $rules = $this->validationRules();
+        $validator = Validator::make(Input::all(), $rules);
+
+
+        if ($validator->fails()) {
+
+            return Response::json($validator->fails());
+            
+        }
 
           // creamos el array guardar 
          $id = Input::get('id');

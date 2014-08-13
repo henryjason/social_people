@@ -18,6 +18,7 @@ create table users(
 	telefono varchar,
 	direccion varchar,
 	bibliografia varchar,
+	type integer not null,
 	remember_token varchar,
 	created_at timestamp NOT NULL default CURRENT_TIMESTAMP,
         updated_at timestamp NOT NULL  default CURRENT_TIMESTAMP,
