@@ -67,7 +67,7 @@ App::down(function()
 	return Response::make("Be right back!", 503);
 });
 
-/*
+
 App::error(function(Exception $exception, $code)
 {
     Log::error($exception);
@@ -77,7 +77,7 @@ App::error(function(Exception $exception, $code)
         return Redirect::to('/');
     }
 });
-*/
+
 /*
 |--------------------------------------------------------------------------
 | Require The Filters File

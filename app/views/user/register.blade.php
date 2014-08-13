@@ -158,8 +158,9 @@
 <!-- Rwgistrar usuarios -->
 
 <div class="col-md-12">
+<br>
 
-  <div class="panel-heading text-center"><strong>Registrate Gratis</strong></div>
+  <div class="panel-heading text-center" align="center"><strong>Registrate Gratis</strong></div>
 
 
 <form role="form" method="post" action="register" >

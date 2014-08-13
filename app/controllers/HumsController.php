@@ -8,7 +8,7 @@ private function validationRules()
     {
         // validate the info, create rules for the inputs
         return array(
-            'mensaje' => 'required|alphaNum|min:1|max:140'
+            'mensaje' => 'required|min:1|max:140'
         );
     }
 

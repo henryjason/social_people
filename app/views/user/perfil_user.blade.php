@@ -85,7 +85,7 @@
                     </div>
 
 
-                    <div class="panel-heading text-rigth"><strong>{{Auth::user()->getNickName();}}</strong></div>
+                    <div class="panel-heading text-rigth"><a href="/editar_perfil">{{Auth::user()->getNickName();}}</a></div>
 
                   
                 </div>

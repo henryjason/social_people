@@ -23,7 +23,8 @@ class UserController extends BaseController
         // validate the info, create rules for the inputs
         return array(
             'email'    => 'required|email', // make sure the email is an actual email
-            'password' => 'required|alphaNum|min:3' // password can only be alphanumeric and has to be greater than 3 characters
+            'password' => 'required|alphaNum|min:3', // password can only be alphanumeric and has to be greater than 3 characters
+           
         );
     }
 
@@ -56,6 +57,7 @@ class UserController extends BaseController
         $rules = $this->validationRules();
         $rules['password'] = 'required|alphaNum|min:3|Confirmed';
         $rules['password_confirmation'] = 'required|alphaNum|min:3';
+         $rules['email'] = 'required|email|unique:users,email';
 
         $validator = Validator::make(Input::all(), $rules);
 
